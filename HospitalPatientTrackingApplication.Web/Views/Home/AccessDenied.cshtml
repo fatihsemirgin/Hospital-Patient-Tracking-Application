@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+    Layout = "_login_layout";
+}
+@section Scripts{
+    <script>
+        swal("Access Denied !!!", "You do not have access to this page!!!", "error").then(() => {
+            window.history.go(-1);
+        });;
+
+    </script>
+}
+<section class="gradient-custom">
+</section>

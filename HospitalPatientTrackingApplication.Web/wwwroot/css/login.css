@@ -1,0 +1,23 @@
+﻿*{
+
+    box-sizing:border-box;
+}
+html, body {
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    background-image: url("back.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.gradient-custom {
+    min-height: 87vh;
+}
+footer{
+   min-height:5vh;
+}
+
+

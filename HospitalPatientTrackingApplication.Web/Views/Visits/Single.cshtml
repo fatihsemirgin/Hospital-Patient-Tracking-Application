@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Single";
+    Layout = "_Layout";
+}
+
+@model List<Visit>
+<h1>Visits</h1>
+@if (TempData["status"] != null)
+{
+    <div id="alert" class="alert @(TempData["status"].ToString().Contains("no") ? "alert-danger": "alert-primary") " role="alert">
+        @TempData["status"]
+    </div>
+}
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead class="table-light">
+            <tr>
+                <th>Visit_Id</th>
+                <th>Patient_Id</th>
+                <th>Doctor Name</th>
+                <th>Visit Date</th>
+                <th>Complaint</th>
+                <th>Treatment</th>
+                <th class="last_th">Delete / Update / View Patient</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.Visit_Id</td>
+                    <td>@item.Patient_Id</td>
+                    <td>@item.Doctor_Name</td>
+                    <td>@item.Visit_Date</td>
+                    <td>@item.Complaint</td>
+                    <td>@item.Treatment</td>
+                    <td>
+                        <a class="link-dark text-decoration-none btn btn-danger" asp-controller="Visits" asp-action="Delete" asp-route-id="@item.Visit_Id">Delete</a>
+                        <a class="btn btn-primary link-dark text-decoration-none " asp-controller="Visits" asp-action="Update" asp-route-id="@item.Visit_Id">Update</a>
+                        <a class="btn btn-info link-dark text-decoration-none " asp-controller="Patients" asp-action="Single" asp-route-id="@item.Patient_Id">View Patient</a>
+                    </td>
+
+                </tr>
+
+
+            }
+        </tbody>
+    </table>
+</div>
+<div class="text-center  mt-4">
+    <a asp-controller="Visits" asp-action="Add" class="btn btn-success me-3">Add Visit</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back</a>
+</div>

@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Add";
+    Layout = "_Layout";
+}
+@{
+    var patients = (SelectList)ViewBag.Patients;
+}
+
+@model Visit
+<h1>Add Visit</h1>
+<form asp-controller="Visits" asp-action="Add" method="post">
+
+    <div class="form-floating mb-3">
+        <select asp-for="Patient_Id" asp-items="@patients" class="form-control" placeholder="Name Surname:">
+            <option selected="true" disabled="disabled">Select:</option>
+        </select>
+        <label asp-for="Patient_Id">Name Surname: </label>
+        <span class="text-danger" asp-validation-for="Patient_Id"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control prevent_future_clock" type="datetime-local" asp-for="Visit_Date" placeholder="Visit_Date" />
+        <label asp-for="Visit_Date">Visit Date: </label>
+        <span class="text-danger" asp-validation-for="Visit_Date"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="Doctor_Name" onkeydown="return /[a-zA-ZğüşıöçĞÜŞİÖÇ\s]/i.test(event.key)" placeholder="Doctor_Name" />
+        <label asp-for="Doctor_Name">Doctor Name: </label>
+        <span class="text-danger" asp-validation-for="Doctor_Name"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Leave a comment here" asp-for="Complaint" style="height: 100px"></textarea>
+        <label asp-for="Complaint">Complaint</label>
+        <span class="text-danger" asp-validation-for="Complaint"></span>
+    </div>
+    <div class="form-floating mb-3">
+        <textarea class="form-control" placeholder="Leave a comment here" asp-for="Treatment" style="height: 100px"></textarea>
+        <label asp-for="Treatment">Treatment</label>
+        <span class="text-danger" asp-validation-for="Treatment"></span>
+    </div>
+    <div class="text-center  mb-3">
+        <button type="submit" class="btn btn-success me-3">Add Visit</button>
+        <a class="btn btn-primary" asp-controller="Visits" asp-action="Index">Back</a>
+
+    </div>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

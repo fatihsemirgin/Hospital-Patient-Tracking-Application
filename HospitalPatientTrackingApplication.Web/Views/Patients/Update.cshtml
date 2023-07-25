@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Update";
+    Layout = "_Layout";
+}
+@model Patient
+<h1 >Patient Update</h1>
+
+<form asp-controller="Patients" asp-action="Update" method="post">
+    <input id="id" class="form-control" type="hidden" asp-for="Id" />
+    <div class="form-floating mb-3">
+        <input min="10000000000" max="99999999999" maxlength="11" class="form-control" asp-for="id_card" oninput="limitInputLength(this)" placeholder="ID Card" />
+        <label asp-for="id_card">ID Card: </label>
+        <span class="text-danger" asp-validation-for="id_card"></span>
+
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" asp-for="name_surname" onkeydown="return /[a-zA-ZğüşıöçĞÜŞİÖÇ\s]/i.test(event.key)" placeholder="Name Surname" />
+        <label asp-for="name_surname">Name Surname: </label>
+        <span class="text-danger" asp-validation-for="name_surname"></span>
+
+
+    </div>
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control prevent_future" asp-for="birth_date" placeholder="Birth Date" />
+        <label asp-for="birth_date">Birth Date: </label>
+        <span class="text-danger" asp-validation-for="birth_date"></span>
+
+    </div>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-success me-3">Update</button>
+        <a class="btn btn-primary" asp-controller="Patients" asp-action="Index">Back</a>
+    </div>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+	}

@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+@model List<Patient>;
+@section Scripts{
+    <script>
+        
+    </script>
+}
+<h1>Patients</h1>
+@if (TempData["status"] != null)
+{
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast show" role="alert" aria-live="polite" aria-atomic="true">
+            <div class="toast-header">
+                <img width="30px" src="~/css/success.png" class="rounded me-2" alt="...">
+                <strong class="me-auto">DEU Patient Tracking System</strong>
+                @*<small>11 mins ago</small>*@
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @TempData["status"].ToString()
+            </div>
+        </div>
+    </div>
+}
+<div class="table-responsive">
+    <table class="table  table-secondary table-hover table-striped">
+        <thead class="table-light">
+            <tr>
+
+                <th>Id</th>
+                <th>Id Card</th>
+                <th>Name Surname</th>
+                <th>BirthDate</th>
+                <th class="last_th">Delete / Update / View Visits</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.id_card</td>
+                    <td>@item.name_surname</td>
+                    <td>@item.birth_date.ToShortDateString()</td>
+                    <td>
+                        <a id="delete_btn" class="link-dark text-decoration-none btn btn-danger" asp-controller="Patients" asp-action="DeletePatient" asp-route-id="@item.Id">Delete</a>
+                        <a class="link-dark text-decoration-none btn btn-primary" asp-controller="Patients" asp-action="Update" asp-route-id="@item.Id">Update</a>
+                        <a class="link-dark text-decoration-none btn btn-info" asp-controller="Visits" asp-action="Single" asp-route-id="@item.Id">View Visits</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+<div class="text-center mt-4">
+    <a class="btn btn-success me-3" asp-controller="Patients" asp-action="AddPatient">Add Patient</a>
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Back</a>
+</div>
+

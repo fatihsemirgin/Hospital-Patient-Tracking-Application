@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "update_user";
+    Layout = "_login_layout";
+}
+@model User
+@inject IHttpContextAccessor _session;
+<section class="gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100 mt-5">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <h2 class="mb-3">Update</h2>
+                <form asp-asp-controller="Home" asp-action="update_user" method="post">
+                    <div class="form-floating form-white mb-4">
+                        <input value="@Model.username" type="text" name="username" id="typeEmailX" class="form-control form-control-lg" placeholder="Username:" />
+                        <label class="form-label text-black" for="typeEmailX">Username:</label>
+                    </div>
+
+                    <div class="form-floating form-white mb-4">
+                        <input value="@Model.password" type="password" name="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Password:" />
+                        <label class="form-label text-black" for="typePasswordX">Password:</label>
+                    </div>
+                    <input name="id" type="hidden" value="@Model.user_id" />
+
+                    <div class="text-center">
+                        <button class="btn btn-success me-3" type="submit">Update</button>
+                        <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Single"
+                           asp-route-id="@_session.HttpContext.Session.GetInt32("patient_id")">Back</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+
+        swal("Update Warning!", "You will logout automatically after the update.", "warning");
+
+
+    </script>
+}

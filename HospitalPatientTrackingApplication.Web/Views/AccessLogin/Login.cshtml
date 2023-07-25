@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+    Layout = "_login_layout";
+}
+@inject IHttpContextAccessor _session;
+@section Scripts{
+    <script>
+        var myData = @Html.Raw(Json.Serialize(TempData["alert"]));
+        if (myData != null) {
+            swal("Wrong Login!", "@TempData["alert"]", "error");
+        }
+
+    </script>
+}
+@if (TempData["status"] != null)
+{
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast show" role="alert" aria-live="polite" aria-atomic="true">
+            <div class="toast-header">
+                <img width="30px" src="~/css/success.png" class="rounded me-2" alt="...">
+                <strong class="me-auto">DEU Patient Tracking System</strong>
+                @*<small>11 mins ago</small>*@
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @TempData["status"].ToString()
+            </div>
+        </div>
+    </div>
+}
+<section class="gradient-custom d-flex justify-content-center align-items-center">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100 mt-5">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-secondary text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                        <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
+                        <form asp-asp-controller="Home" asp-action="Login" method="post">
+                            <div class="form-floating form-white mb-4">
+                                <input type="text" name="username" id="typeEmailX" class="form-control form-control-lg" placeholder="Username:" />
+                                <label class="form-label text-black" for="typeEmailX">Username:</label>
+                            </div>
+
+                            <div class="form-floating form-white mb-4">
+                                <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Password:" />
+                                <label class="form-label text-black" for="typePasswordX">Password:</label>
+                            </div>
+
+                            @*<p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>*@
+
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

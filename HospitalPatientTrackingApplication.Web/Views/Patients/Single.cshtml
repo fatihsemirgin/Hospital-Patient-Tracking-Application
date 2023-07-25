@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Single";
+    Layout = "_Layout";
+}
+@model Patient
+<h2 class="text-center">Patient Profile</h2>
+<div class="row text-center mt-5">
+    <div class="col-sm-2 offset-sm-5">
+        <img class="img-profile rounded-circle" src="~/css/undraw_profile.svg">
+    </div>
+</div>
+<div class="row mt-5 font-weight-bold font-italic">
+    <div class="col-sm-12 text-center ">
+        <h5>ID: @Model.Id</h5>
+    </div>
+    <div class="col-sm-12 text-center mt-3">
+        <h5>
+            ID Card: @Model.id_card
+        </h5>
+    </div><hr>
+    <div class="col-sm-12 text-center mt-3">
+        <h5>
+            Name Surname: @Model.name_surname
+        </h5>
+    </div><hr>
+    <div class="col-sm-12 text-center mt-3">
+        <h5>
+            Birth Date: @Model.birth_date.ToShortDateString()
+        </h5>
+    </div><hr>
+
+</div>

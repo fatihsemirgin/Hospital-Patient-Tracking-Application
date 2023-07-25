@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Single-Patient";
+    Layout = "_login_layout";
+}
+@model List<Visit>
+
+@if (TempData["status"] != null)
+{
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast show" role="alert" aria-live="polite" aria-atomic="true">
+            <div class="toast-header">
+                <img width="30px" src="~/css/success.png" class="rounded me-2" alt="...">
+                <strong class="me-auto">DEU Patient Tracking System</strong>
+                @*<small>11 mins ago</small>*@
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @TempData["status"].ToString()
+            </div>
+        </div>
+    </div>
+}
+@section Scripts{
+    <script>
+
+        if (@Model.Count()== 0) {
+            swal("No Visit", "You have no any visits", "info");
+        }
+
+    </script>
+}
+<section id="single_user" class="gradient-custom">
+    <div class="container">
+        <main role="main">
+            <h1 class="mb-3">Visits</h1>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-secondary table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Visit_Id</th>
+                            <th>Patient_Id</th>
+                            <th>Doctor Name</th>
+                            <th>Visit Date</th>
+                            <th>Complaint</th>
+                            <th>Treatment</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@item.Visit_Id</td>
+                                <td>@item.Patient_Id</td>
+                                <td>@item.Doctor_Name</td>
+                                <td>@item.Visit_Date</td>
+                                <td>@item.Complaint</td>
+                                <td>@item.Treatment</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</section>

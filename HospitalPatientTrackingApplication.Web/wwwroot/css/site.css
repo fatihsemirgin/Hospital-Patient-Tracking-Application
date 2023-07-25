@@ -1,0 +1,87 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.table-responsive {
+    max-height: 450px;
+    opacity: 88%;
+}
+
+table {
+    table-layout: auto;
+    border-collapse: separate;
+    text-align: center;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+th {
+    position: sticky;
+    top: 0;
+}
+
+thead, td {
+    height: 55px;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url("back.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.table-responsive::-webkit-scrollbar {
+    width: 16px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 100px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* remove the gap so it doesn't close */
+}
+
+.dropdown-menu > li > a:hover {
+    color: black !important;
+}
+
+.last_th {
+    width: 310px;
+    min-width: 300px;
+}
+
+.dropdown_content_custom {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}

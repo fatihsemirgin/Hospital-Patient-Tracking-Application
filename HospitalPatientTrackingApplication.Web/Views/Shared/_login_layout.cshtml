@@ -1,0 +1,68 @@
+﻿@inject IHttpContextAccessor _session;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HospitalPatientTrackingApplication.Web</title>
+    @*  <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HospitalPatientTrackingApplication.Web.styles.css" asp-append-version="true" />
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow ">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light" href="#">DEU Patient Tracking</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @if (ViewData["Title"] != "Login Page")
+                {
+                    <ul class="nav navbar-nav navbar-right table-secondary">
+                        <li class="nav-item d-flex align-items-center me-3"><span class="text-light">@_session.HttpContext.Session.GetString("user_name")</span></li>
+                        <li class="nav-item dropdown">
+                            <img width="45px" src="~/css/undraw_profile.svg" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <ul class="dropdown-menu dropdown_content_custom text-center" style=" background-color: #6C757D;">
+                                <li>
+                                    <a class="btn btn-secondary w-100" asp-controller="Home" asp-action="update_user"
+                                       asp-route-id="@_session.HttpContext.Session.GetInt32("user_id")">Update Informations</a>
+
+                                </li>
+
+                                <li><a class="btn btn-secondary w-100" asp-controller="Home" asp-action="Logout">Logout</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                }
+
+            </div>
+        </nav>
+    </header>
+    @RenderBody()
+
+
+    <footer class="footer text-muted text-center d-flex align-items-center">
+        <div class="container">
+            <span class="footer_date"></span>
+            @* <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>*@
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
